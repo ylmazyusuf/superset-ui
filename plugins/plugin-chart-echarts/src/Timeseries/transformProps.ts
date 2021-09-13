@@ -97,6 +97,7 @@ export default function transformProps(
     yAxisTitle,
     tooltipTimeFormat,
     zoomable,
+    scrolable,
     richTooltip,
     xAxisLabelRotation,
     emitFilter,
@@ -287,15 +288,23 @@ export default function transformProps(
         },
       },
     },
-    dataZoom: zoomable
-      ? [
+    dataZoom: zoomable && scrolable
+      ? [ {type: 'inside'},
           {
             type: 'slider',
             start: TIMESERIES_CONSTANTS.dataZoomStart,
             end: TIMESERIES_CONSTANTS.dataZoomEnd,
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
-          },
-        ]
+          }]
+      : zoomable 
+      ? [{
+            type: 'slider',
+            start: TIMESERIES_CONSTANTS.dataZoomStart,
+            end: TIMESERIES_CONSTANTS.dataZoomEnd,
+            bottom: TIMESERIES_CONSTANTS.zoomBottom,
+        }]
+      : scrolable
+      ? [{type: 'inside'}]
       : [],
   };
 

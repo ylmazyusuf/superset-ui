@@ -48,6 +48,7 @@ const {
   truncateYAxis,
   yAxisBounds,
   zoomable,
+  scrolable,
   xAxisLabelRotation,
 } = DEFAULT_FORM_DATA;
 const config: ControlPanelConfig = {
@@ -189,6 +190,18 @@ const config: ControlPanelConfig = {
               default: zoomable,
               renderTrigger: true,
               description: t('Enable data zooming controls'),
+            },
+          },
+        ],
+        [
+          {
+            name: 'scrolable',
+            config: {
+              type: 'CheckboxControl',
+              label: t('Scrool Zoom'),
+              default: scrolable,
+              renderTrigger: true,
+              description: t('Enable scroll zooming controls'),
             },
           },
         ],
